@@ -23,14 +23,13 @@ import lombok.Setter;
 @Setter
 @EqualsAndHashCode
 @Entity
-public class Article implements Serializable{
+public class Conta implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
+	//@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id;
-	private String title;
-	private String content;
+	private String conta;
+	
 	
 	
 //	@Setter(AccessLevel.NONE)
