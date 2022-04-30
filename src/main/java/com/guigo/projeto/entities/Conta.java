@@ -1,23 +1,23 @@
 package com.guigo.projeto.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
-@AllArgsConstructor
+@RequiredArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
@@ -28,12 +28,14 @@ public class Conta implements Serializable{
 	
 	//@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Id
+	@NonNull
 	private String conta;
 	
+	@OneToMany (mappedBy = "contaOrigem")
+	private List<AgendamentoTransferencia> transferenciasContaOrigem = new ArrayList<AgendamentoTransferencia>();
 	
+	@OneToMany (mappedBy = "contaDestino")
+	private List<AgendamentoTransferencia> transferenciasContaDestino = new ArrayList<AgendamentoTransferencia>();
 	
-//	@Setter(AccessLevel.NONE)
-//	@OneToMany (mappedBy = "article_id") 
-//	private Set<Tag> tags = new HashSet<Tag>();
 
 }

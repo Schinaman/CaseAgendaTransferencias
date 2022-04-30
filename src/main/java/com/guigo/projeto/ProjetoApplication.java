@@ -1,8 +1,8 @@
 package com.guigo.projeto;
 
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.Month;
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,17 +32,27 @@ public class ProjetoApplication implements CommandLineRunner{
 	public void run(String... args) throws Exception {
 		
 		
+		
+		//Criar conversor de taxa para porcentagem
+		
 		Conta conta1 = new Conta("123456");
 		Conta conta2 = new Conta("123450");
 		Conta conta3 = new Conta("123459");
 		
-		AgendamentoTransferencia agend1 = new AgendamentoTransferencia(null, conta1, conta2, 200.00, 5.0, Instant.now(), null  );
-		Date.from(LocalDate.now());
-		
-		
-		//Criar conversor de taxa para porcentagem
-	
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		//Order order1 = new Order(null, sdf.parse("30/09/2017 10:32"), client1, end1);
+		AgendamentoTransferencia agendamento1 = new AgendamentoTransferencia(null, conta1, conta2, 200.00, sdf.parse("30/09/2022") );
 
+		Date today = Calendar.getInstance().getTime();        
+		String todayAsString = sdf.format(today);
+		Date data1 = sdf.parse(todayAsString);
+		
+		
+		contaRepository.saveAll(Arrays.asList(conta1,conta2,conta3));
+		agendamentoRepository.saveAll(Arrays.asList(agendamento1));
 	}
+	
+	
+	//"America/Sao_Paulo"
 
 }
