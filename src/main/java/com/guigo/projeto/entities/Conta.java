@@ -2,14 +2,14 @@ package com.guigo.projeto.entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import lombok.AccessLevel;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

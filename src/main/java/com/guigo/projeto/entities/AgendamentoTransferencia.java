@@ -32,11 +32,13 @@ private static final long serialVersionUID = 1L;
 @Id
 @GeneratedValue(strategy=GenerationType.IDENTITY)
 private Long agendamentoTransacaoId;
-
+	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="contaOrigem_id")
 	@NonNull
 private Conta contaOrigem;
+	
 	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="contaDestino_id")
