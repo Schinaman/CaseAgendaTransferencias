@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -46,6 +47,9 @@ public class ProjetoApplication implements CommandLineRunner{
 		Date today = Calendar.getInstance().getTime();        
 		String todayAsString = sdf.format(today);
 		Date data1 = sdf.parse(todayAsString);
+		
+	    long diffInMillies = Math.abs(sdf.parse("30/09/2022").getTime() - sdf.parse("30/09/2022").getTime());
+		long diff = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
 		
 		
 		contaRepository.saveAll(Arrays.asList(conta1,conta2,conta3));
