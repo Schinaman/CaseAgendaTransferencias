@@ -2,7 +2,6 @@ package com.guigo.projeto.entities;
 
 import java.io.Serializable;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
@@ -32,7 +31,7 @@ private static final long serialVersionUID = 1L;
 
 @Id
 @GeneratedValue(strategy=GenerationType.IDENTITY)
-private Long agendamentoTransacaoId;
+private Long id;
 	
 	@JsonIgnore
 	@ManyToOne
@@ -65,23 +64,23 @@ private Double taxaPercent;
 //Variaveis das Taxas
 static final Double taxaPercentA = 0.03;
 static final Double taxaValorA = 12.00;
-static final Double taxaPercentB;
+static final Double taxaPercentB = 0.00;
 static final Double taxaValorB = 12.00;
 static final Double taxaPercentC1 = 0.082;
-static final Double taxaValorC1;
+static final Double taxaValorC1 = 0.00;
 static final Double taxaPercentC2 = 0.069;
-static final Double taxaValorC2;
+static final Double taxaValorC2 = 0.00;
 static final Double taxaPercentC3 = 0.047;
-static final Double taxaValorC3;
+static final Double taxaValorC3 = 0.00;
 static final Double taxaPercentC4 = 0.017;
-static final Double taxaValorC4;
+static final Double taxaValorC4 = 0.00;
 
 
 
-public AgendamentoTransferencia(Long agendamentoTransacaoId, @NonNull Conta contaOrigem,
+public AgendamentoTransferencia(Long id, @NonNull Conta contaOrigem,
 		@NonNull Conta contaDestino, @NonNull Double valorTransferencia, Date dataAgendamento) throws ParseException {
 	super();
-	this.agendamentoTransacaoId = agendamentoTransacaoId;
+	this.id = id;
 	this.contaOrigem = contaOrigem;
 	this.contaDestino = contaDestino;
 	this.valorTransferencia = valorTransferencia;
@@ -89,6 +88,7 @@ public AgendamentoTransferencia(Long agendamentoTransacaoId, @NonNull Conta cont
 	
 	//SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	this.dataTransferencia = new Date();//sdf.parse("30/09/2022");
+	calculaTaxa();
 }
 
 
@@ -107,8 +107,7 @@ private long calculaDiffDias(Date data1, Date data2) {
 private void calculaTaxa() {
 	
 //Agendamento precisa ser maior que Hoje
-	long diff = calculaDiffDias(this.dataTransferencia, this.dataAgendamento);
-	
+	long diff = calculaDiffDias(this.dataTransferencia, this.dataAgendamento);	
 
 //Taxa por prazo
 	String tipoTaxa = null;
