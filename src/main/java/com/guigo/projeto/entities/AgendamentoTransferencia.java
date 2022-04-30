@@ -3,10 +3,6 @@ package com.guigo.projeto.entities;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
-import java.time.temporal.ChronoField;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -17,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -40,6 +37,7 @@ private Long agendamentoTransacaoId;
 	@JoinColumn(name="contaOrigem_id")
 	@NonNull
 private Conta contaOrigem;
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="contaDestino_id")
 	@NonNull
